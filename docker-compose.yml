@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  game-center-db:
+    image: mysql:5.6
+    command:
+      [
+        "mysqld",
+        "--character-set-server=utf8",
+        "--collation-server=utf8_general_ci",
+      ]
+    volumes:
+      - "game-center-mysql2:/var/lib/mysql"
+    ports:
+      - "3305:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "api"
+      MYSQL_USER: "api"
+      MYSQL_PASSWORD: "api"
+      MYSQL_DATABASE: "game-center"
+    networks:
+      - game-center2
+volumes:
+  game-center-mysql2:
+networks:
+  game-center2:
