@@ -1,0 +1,37 @@
+-- run the following queries to create the tables. and insert sample data.
+
+
+CREATE TABLE initial_board (
+    id bigint not null auto_increment,
+    pattern varchar(255),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE solution_board (
+    id bigint not null auto_increment,
+    initial_board_id bigint not null,
+    pattern varchar(255),
+    PRIMARY KEY (id),
+    FOREIGN KEY (initial_board_id) REFERENCES initial_board(id)
+);
+
+CREATE TABLE score_board (
+    id bigint not null auto_increment,
+    initial_board_id bigint not null,
+    name varchar(255),
+    time int,
+    PRIMARY KEY (id),
+    FOREIGN KEY (initial_board_id) REFERENCES initial_board(id)
+);
+
+INSERT INTO initial_board (pattern)
+VALUES 
+	('057000904060894000200060830500201003081000570400509006015020007000657010000000000'),
+	('530070000600195000098000060800060003400803001700020006060000280000419005000080079');
+
+INSERT INTO solution_board (initial_board_id, pattern)
+VALUES
+	(1, '857312964163894725294765831576281493981436572432579186615928347348657219729143658'),
+	(2, '534678912672195348198342567859761423426853791713924856961537284287419635345286179');
+
+
